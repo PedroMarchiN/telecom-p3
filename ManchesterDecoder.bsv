@@ -9,8 +9,6 @@ module mkManchesterDecoder(FrameBitProcessor);
     
     interface Put in;
         method Action put(Maybe#(Bit#(1)) in);
-            Bit#(3) next_i;
-
              if (in == Invalid) begin
                 outFifo.enq(Invalid);
                 i <= 0;
