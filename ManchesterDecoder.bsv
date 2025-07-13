@@ -16,15 +16,15 @@ module mkManchesterDecoder(FrameBitProcessor);
                 i <= 0;
                 prev <= Invalid;
             end else begin
-                // Detecta transição 0->1 e 1->0 e enfileira a saída
                 if (in == Valid(1) && prev == Valid(0) && i>=2 && i<=5) begin
                     outFifo.enq(Valid(1)); 
                     i <= 4;
                 end else if (in == Valid(0) && prev == Valid(1)&& i>=2 && i<=5) begin
                     outFifo.enq(Valid(0)); 
                     i <= 4;
+                end else if (in == Valid(1) && prev == Valid(0)&& i<=1 ) begin 
+                    i <= 0;
                 end else begin
-                    // Incrementa normalmente
                     i <= (i == 7) ? 0 : i + 1;
                 end
 
